@@ -48,7 +48,7 @@ jobs:
       - name: Sync ABIs to xeon-dapp
         run: |
           cd xeon-dapp
-          cp -r ../v1-core/abi/* abi/
+          cp -r ../v1-core/abi/* src/abi/
           git add abi/
           git commit -m "Sync ABIs from v1-core"
           git push origin abi/sync
