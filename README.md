@@ -1,8 +1,9 @@
-# xeon-core-v1 &middot; [![GitHub license](https://img.shields.io/badge/core_license-BUSL_1.1-blue.svg)](https://github.com/xeon-protocol/v1-core/blob/main/LICENSE) [![GitHub license](https://img.shields.io/badge/incl_license-GPL_3.0-blue.svg)](https://github.com/xeon-protocol/v1-core/blob/main/LICENSE-GPL.md)
+# Xeon Protocol v1
+[![GitHub license](https://img.shields.io/badge/core_license-BUSL_1.1-blue.svg)](https://github.com/xeon-protocol/v1-core/blob/main/LICENSE) [![GitHub license](https://img.shields.io/badge/incl_license-GPL_3.0-blue.svg)](https://github.com/xeon-protocol/v1-core/blob/main/LICENSE-GPL.md)
 
 [![xeon token](https://img.shields.io/badge/$XEON-0x8d65a2eaBDE4B31cbD7E43F27E47559d1CCec86c-8429c6.svg?logo=ethereum)](https://app.uniswap.org/explore/tokens/ethereum/0x8d65a2eabde4b31cbd7e43f27e47559d1ccec86c?chain=mainnet)
 
-This repository contains the core contracts for v1 of Xeon Protocol including tests, and scripts. Xeon Protocol is a cutting edge DeFi protocol that unlocks liquidity on EVM networks by providing novel risk-management tools and an all-inclusive frontend.
+This repository contains the core contracts for v1 of Xeon Protocol including tests, and scripts. For the frontend, see the [xeon-dapp](https://github.com/xeon-protocol/xeon-dapp) repository.
 
 ### Follow Us
 
@@ -22,12 +23,6 @@ This repository contains the core contracts for v1 of Xeon Protocol including te
 - `test` - tests written in solidity.
 - `script` - scripts written in solidity.
 
-## Foundry
-
-Xeon contracts are built with Foundry, a smart contract development toolchain made up of the following tools:
-
-The `foundry.toml` file is used to configure Foundry settings, manage RPC endpoints, and dependencies.
-
 ## Setup
 
 First, ensure Foundry is installed.
@@ -43,7 +38,7 @@ Second, install the dependency submodules using Forge:
 forge install --no-commit foundry-rs/forge-std openzeppelin/openzeppelin-contracts uniswap/v2-core uniswap v3-core uniswap v3-periphery
 ```
 
-To learn more about Foundry, check out their docs [here](https://book.getfoundry.sh/).
+The `foundry.toml` file is used to configure Foundry settings, manage RPC endpoints, and dependencies.
 
 ## Forge
 
@@ -112,19 +107,21 @@ Then run the `forge script` command without the private key arg.
 
 💡 **When deploying a new contract, use the `--verify` arg to verify the contract on deployment.**
 
-## Product Management &middot; [![trello](https://img.shields.io/badge/Trello-855DCD.svg?logo=trello)](https://trello.com/b/mW198hKo/xeon-protocol-board)
+## Product Management
+[![trello](https://img.shields.io/badge/Trello-855DCD.svg?logo=trello)]([https://trello.com/b/mW198hKo/xeon-protocol-board](https://trello.com/invite/b/mW198hKo/ATTIc305ea03ad04139d54ef382b7a276d651224A655/xeon-protocol-board))
 
-If you have trouble joining Trello, please request access by clicking [here](https://trello.com/invite/b/mW198hKo/ATTIc305ea03ad04139d54ef382b7a276d651224A655/xeon-protocol-board).
+## Contributing
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](https://github.com/xeon-protocol/v1-core/blob/main/CONTRIBUTING.md) [![Bug Bounties](https://img.shields.io/badge/Bug_Bounties-open-red.svg)](https://github.com/xeon-protocol/v1-core/blob/main/SECURITY.md)
 
-## [Contributing](https://github.com/xeon-protocol/v1-core/blob/main/CONTRIBUTING.md) &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](https://github.com/xeon-protocol/v1-core/blob/main/CONTRIBUTING.md) &middot; [![Bug Bounties](https://img.shields.io/badge/Bug_Bounties-open-red.svg)](https://github.com/xeon-protocol/v1-core/blob/main/SECURITY.md)
+If you are a developer looking to contribute, please take a look at the guidelines in [CONTRIBUTING](https://github.com/xeon-protocol/v1-core/blob/main/CONTRIBUTING.md) first, then feel free to look at [open issues](https://github.com/xeon-protocol/v1-core/issues/) or open a [new one](https://github.com/xeon-protocol/v1-core/issues/new/choose).
 
-If you are a developer looking to contribute, please take a look at the guidelines in [CONTRIBUTING](https://github.com/xeon-protocol/v1-core/blob/main/CONTRIBUTING.md) first.
+If you are an Solidity developer and are interested in auditing our contracts, you can submit an audit by using the form [here](#).
 
-If you are an auditor and have found any problems or vulnerabilities in the codebase, please see our policy in [SECURITY](https://github.com/xeon-protocol/v1-core/blob/main/SECURITY.md).
-
-## [Security](https://github.com/xeon-protocol/v1-core/blob/main/SECURITY.md) &middot; [![warpcast](https://img.shields.io/badge/contact_dev-FFFFFF.svg?logo=farcaster)](https://warpcast.com/xeonprotocol)
+## Security
 
 For any security-related concerns, please refer to the [SECURITY](https://github.com/xeon-protocol/v1-core/blob/main/SECURITY.md) policy. This repository is subject to a bug bounty program per the terms outlined in the aforementioned policy.
+
+For vulnerability hunters, please see our [Bug Bounty Program](https://github.com/xeon-protocol/v1-core/blob/main/bug-bounty.md).
 
 ## License
 
