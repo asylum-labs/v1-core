@@ -6,6 +6,7 @@ import {console2} from "forge-std/console2.sol";
 import {XeonToken} from "../src/XeonToken.sol";
 import {XeonStaking} from "../src/XeonStaking.sol";
 import {XeonHedging} from "../src/XeonHedging.sol";
+import {SaveABI} from "./SaveABI.s.sol";
 
 /* ============ Base Sepolia ============ */
 // simulate: forge script script/XeonProtocol.s.sol:XeonProtocolScript --rpc-url $BASE_SEPOLIA_RPC_URL --chain-id 84532 -vvvv
@@ -15,7 +16,7 @@ import {XeonHedging} from "../src/XeonHedging.sol";
 // simulate: forge script script/XeonProtocol.s.sol:XeonProtocolScript --rpc-url $ETHEREUM_RPC_URL --chain-id 1 -vvvv
 // broadcast: forge script script/Onboarding.s.sol:XeonProtocolScript --rpc-url $ETHEREUM_RPC_URL --chain-id 1 -vv --broadcast --verify
 
-contract XeonProtocolScript is Script {
+contract XeonProtocolScript is Script, SaveABI {
     // ensure `PriceOracle.sol` is deployed on required chain
     // uncomment addresses for that chain
 
@@ -38,17 +39,35 @@ contract XeonProtocolScript is Script {
         console2.log("Deploying XeonToken contract...");
         XeonToken xeonToken = new XeonToken();
         console2.log("XeonToken contract deployed at:", address(xeonToken));
+        saveAbi(address(xeonToken), "XeonToken");
 
         // deploy  XeonStaking
         console2.log("Deploying XeonStaking contract...");
         XeonStaking xeonStaking = new XeonStaking(address(xeonToken));
         console2.log("XeonStaking contract deployed at:", address(xeonStaking));
+        saveAbi(address(xeonStaking), "XeonStaking");
 
         // deploy XeonHedging
         console2.log("Deploying XeonHedging contract...");
         XeonHedging xeonHedging = new XeonHedging(uniV2Factory, uniV3Factory, address(priceOracle), xeonStaking);
         console2.log("XeonHedging contract deployed at:", address(xeonHedging));
+        saveAbi(address(xeonHedging), "XeonHedging");
 
         vm.stopBroadcast();
+    }
+
+    /**
+     * @dev save abi of deployed contract to `abi/` directory
+     * @dev the resulting abi will be synced with `xeon-dapp/abi/`
+     * @param contractAddress 
+     * @param contractName 
+     */
+    function saveAbi(address contractAddress, string memory contractName) internal {
+        string memory command = string(
+            abi.encodePacked(
+                "cast abi --out abi/", contractName, ".abi.json ", contractAddress
+            )
+        );
+        exec(command);
     }
 }
