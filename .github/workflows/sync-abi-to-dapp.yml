@@ -12,6 +12,11 @@ jobs:
   sync_abi_files:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.V1_CORE_SSH_KEY }}
+
       - name: Checkout v1-core
         uses: actions/checkout@v2
         with:
