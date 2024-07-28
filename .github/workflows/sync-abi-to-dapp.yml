@@ -16,10 +16,9 @@ jobs:
     steps:
       - name: Set up SSH for xeon-dapp
         run: |
-          echo "${{ secrets.XEON_DAPP_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa_xeon_dapp
+          mkdir -p ~/.ssh
+          echo "${{ secrets.XEON_DAPP_SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa_xeon_dapp
           chmod 600 ~/.ssh/id_rsa_xeon_dapp
-          echo "Host github.com" >> ~/.ssh/config
-          echo "  IdentityFile ~/.ssh/id_rsa_xeon_dapp" >> ~/.ssh/config
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       - name: Checkout xeon-dapp repository
