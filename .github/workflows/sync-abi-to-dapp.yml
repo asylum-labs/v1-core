@@ -38,7 +38,7 @@ jobs:
         run: |
           git clone git@github.com:xeon-protocol/xeon-dapp.git
           cd xeon-dapp
-          git checkout -b ci/abi-sync origin/ci/abi-sync || git checkout --orphan ci/abi-sync
+          git checkout -B ci/abi-sync || git checkout --orphan ci/abi-sync
           rsync -a ../abi/ src/abi/
 
       - name: Check ABI File Naming
