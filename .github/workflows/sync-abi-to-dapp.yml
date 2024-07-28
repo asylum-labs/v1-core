@@ -27,6 +27,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: xeon-protocol/xeon-dapp
+          token: ${{ secrets.V1_SYNC_PAT }}
           path: xeon-dapp
 
       - name: Sync ABI to xeon-dapp
