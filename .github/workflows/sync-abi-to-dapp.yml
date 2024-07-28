@@ -39,9 +39,10 @@ jobs:
           git clone git@github.com:xeon-protocol/xeon-dapp.git
           cd xeon-dapp
           git checkout -B ci/abi-sync || git checkout --orphan ci/abi-sync
-          rsync -a ../abi/ src/abi/
+          rsync -a ../v1-core/abi/ src/abi/
 
       - name: Check ABI File Naming
+        if: steps.check_changes.outputs.changed == '1'
         uses: ./.github/actions/check-abi-naming
 
       - name: Commit and push changes
@@ -59,12 +60,15 @@ jobs:
           fi
 
       - name: List changed files
+        if: steps.check_changes.outputs.changed == '1'
         id: changes
         run: |
+          cd xeon-dapp
           CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
           echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
 
       - name: Create Pull Request
+        if: steps.check_changes.outputs.changed == '1'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
