@@ -75,6 +75,13 @@ jobs:
       - name: Create Pull Request
         if: env.CHANGED_FILES != ''
         run: |
-          gh pr create --repo xeon-protocol/xeon-dapp --head ci/abi-sync --base main --title '[v1-core] sync ABI files' --body "gm ☀️\n\nhere are some incoming ABI changes from the `v1-core` repository\n\n**Summary of changes:**\n${{ env.CHANGED_FILES }}\n\nPlease review the changes to ensure there are no breaking changes before merging."
+          gh pr create \
+            --repo xeon-protocol/xeon-dapp \
+            --head ci/abi-sync \
+            --base main \
+            --title '[v1-core] sync ABI files' \
+            --body "$(echo -e 'gm ☀️\n\nhere are some incoming ABI changes from the `v1-core` repository\n\n**Summary of changes:**\n${{ env.CHANGED_FILES }}\n\nPlease review the changes to ensure there are no breaking changes before merging.')" \
+            --label "automated, scope: contracts" \
+            --assignee "heyJonBray, RTJ99"
         env:
           GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
