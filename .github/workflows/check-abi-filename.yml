@@ -1,0 +1,19 @@
+name: Check ABI File Naming
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check_naming:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check ABI File Naming
+        uses: ./.github/actions/check-abi-naming
