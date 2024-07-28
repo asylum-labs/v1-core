@@ -2,6 +2,7 @@ name: Sync ABI Files to xeon-dapp
 
 permissions:
   contents: write
+  pull-requests: write
 
 on:
   push:
@@ -18,9 +19,6 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.V1_CORE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa_v1_core
           chmod 600 ~/.ssh/id_rsa_v1_core
-          echo "Host v1-core.github.com" >> ~/.ssh/config
-          echo "  HostName github.com" >> ~/.ssh/config
-          echo "  IdentityFile ~/.ssh/id_rsa_v1_core" >> ~/.ssh/config
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       - name: Checkout v1-core repository
@@ -75,22 +73,14 @@ jobs:
           CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
           echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
 
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh
+
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
         if: env.CHANGED_FILES != ''
-        with:
-          token: ${{ secrets.SYNC_TOKEN }}
-          commit-message: 'ci: sync ABI files from `v1-core`'
-          branch: ci/abi-sync
-          base: main
-          title: '[v1-core] sync ABI files'
-          body: |
-            gm ☀️
-            here are some incoming ABI changes from the `v1-core` repository
-
-            **Summary of changes:**
-            ${{ env.CHANGED_FILES }}
-
-            Please review the changes to ensure there are no breaking changes before merging.
-          labels: 'automated, scope: contracts'
-          assignees: 'heyJonBray, RTJ99'
+        run: |
+          gh pr create --repo xeon-protocol/xeon-dapp --head ci/abi-sync --base main --title '[v1-core] sync ABI files' --body "gm ☀️\n\nhere are some incoming ABI changes from the `v1-core` repository\n\n**Summary of changes:**\n${{ env.CHANGED_FILES }}\n\nPlease review the changes to ensure there are no breaking changes before merging."
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
