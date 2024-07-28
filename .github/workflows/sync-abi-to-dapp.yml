@@ -43,6 +43,7 @@ jobs:
       - name: Commit and push changes
         if: steps.check_changes.outputs.changed == '1'
         run: |
+          cd xeon-dapp
           git add src/abi/
           if git diff-index --quiet HEAD; then
             echo "No changes to commit."
@@ -54,7 +55,10 @@ jobs:
           fi
 
       - name: List changed files
-        uses: ./.github/actions/list-changed-files
+        id: changes
+        run: |
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          echo "changed_files=$CHANGED_FILES" >> $GITHUB_ENV
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
