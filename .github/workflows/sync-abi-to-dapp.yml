@@ -6,7 +6,7 @@ permissions:
 on:
   push:
     branches:
-      - feat/abi-automation
+      - main
 
 jobs:
   sync_abi_files:
