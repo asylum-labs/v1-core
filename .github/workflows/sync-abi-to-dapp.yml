@@ -1,0 +1,46 @@
+name: Sync ABI Files to xeon-dapp
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - feat/abi-automation
+
+jobs:
+  sync_abi_files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.V1_CORE_SSH_KEY }}
+
+      - name: Checkout v1-core
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Check for ABI changes
+        id: check_changes
+        run: |
+          git diff --exit-code abi/ || echo "ABI files have changed"
+          echo "::set-output name=changed::$(git diff --exit-code abi/ || echo 1)"
+
+      - name: Sync ABI to xeon-dapp
+        if: steps.check_changes.outputs.changed == '1'
+        run: |
+          git clone git@github.com:xeon-protocol/xeon-dapp.git
+          cd xeon-dapp
+          git checkout -b ci/abi-sync origin/ci/abi-sync || git checkout --orphan ci/abi-sync
+          rsync -a ../abi/ src/abi/
+          git add src/abi/
+          if git diff-index --quiet HEAD; then
+            echo "No changes to commit."
+          else
+            git config user.name "v1-core"
+            git config user.email "xeon-protocol-actions@github.com"
+            git commit -m "ci: sync ABI files from `v1-core`"
+            git push origin ci/abi-sync
+          fi
