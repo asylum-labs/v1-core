@@ -14,27 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up SSH for v1-core
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.V1_CORE_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa_v1_core
-          chmod 600 ~/.ssh/id_rsa_v1_core
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-
-      - name: Checkout v1-core repository
-        uses: actions/checkout@v3
-        with:
-          ssh-key: ${{ secrets.V1_CORE_SSH_PRIVATE_KEY }}
-          repository: xeon-protocol/v1-core
-          ref: main
-
       - name: Set up SSH for xeon-dapp
         run: |
           echo "${{ secrets.XEON_DAPP_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa_xeon_dapp
           chmod 600 ~/.ssh/id_rsa_xeon_dapp
-          echo "Host xeon-dapp.github.com" >> ~/.ssh/config
-          echo "  HostName github.com" >> ~/.ssh/config
+          echo "Host github.com" >> ~/.ssh/config
           echo "  IdentityFile ~/.ssh/id_rsa_xeon_dapp" >> ~/.ssh/config
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
 
       - name: Checkout xeon-dapp repository
         uses: actions/checkout@v3
@@ -44,14 +30,15 @@ jobs:
           ssh-key: ${{ secrets.XEON_DAPP_SSH_PRIVATE_KEY }}
           ref: main
 
+      - name: Copy ABI files from v1-core
+        run: |
+          mkdir -p xeon-dapp/src/abi
+          cp -r ../v1-core/abi/* xeon-dapp/src/abi/
+
       - name: Create new branch for ABI sync
         run: |
           cd xeon-dapp
           git checkout -b ci/abi-sync
-
-      - name: Copy ABI files
-        run: |
-          cp -r abi/* xeon-dapp/src/abi/
 
       - name: Commit and push changes
         run: |
