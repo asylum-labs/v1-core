@@ -35,6 +35,13 @@ jobs:
           cd xeon-dapp
           git checkout -b ci/abi-sync origin/ci/abi-sync || git checkout --orphan ci/abi-sync
           rsync -a ../abi/ src/abi/
+
+      - name: Check ABI File Naming
+        uses: ./.github/actions/check-abi-naming
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changed == '1'
+        run: |
           git add src/abi/
           if git diff-index --quiet HEAD; then
             echo "No changes to commit."
@@ -46,10 +53,7 @@ jobs:
           fi
 
       - name: List changed files
-        id: changes
-        run: |
-          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
-          echo "changed_files=$CHANGED_FILES" >> $GITHUB_ENV
+        uses: ./.github/actions/list-changed-files
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5

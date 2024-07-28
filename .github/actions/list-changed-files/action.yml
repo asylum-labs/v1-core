@@ -1,0 +1,15 @@
+name: 'List Changed Files'
+description: 'Lists changed files between the last commit and the current commit.'
+outputs:
+  changed_files:
+    description: 'Files changed in the latest commit'
+    value: ${{ steps.list_files.outputs.changed_files }}
+
+runs:
+  using: 'composite'
+  steps:
+    - id: list_files
+      run: |
+        CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+        echo "changed_files=$CHANGED_FILES" >> $GITHUB_ENV
+        echo "::set-output name=changed_files::$CHANGED_FILES"
