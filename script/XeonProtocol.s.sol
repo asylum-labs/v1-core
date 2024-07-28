@@ -7,6 +7,11 @@ import {XeonToken} from "../src/XeonToken.sol";
 import {XeonStaking} from "../src/XeonStaking.sol";
 import {XeonHedging} from "../src/XeonHedging.sol";
 
+/* ============ Parse ABIs ============ */
+// forge build --silent && jq '.abi' ./out/XeonHedging.sol/XeonHedging.abi.json
+// forge build --silent && jq '.abi' ./abi/XeonStaking.abi.json
+// forge build --silent && jq '.abi' ./abi/XeonToken.abi.json
+
 /* ============ Base Sepolia ============ */
 // simulate: forge script script/XeonProtocol.s.sol:XeonProtocolScript --rpc-url $BASE_SEPOLIA_RPC_URL --chain-id 84532 -vvvv
 // broadcast: forge script script/Onboarding.s.sol:XeonProtocolScript --rpc-url $BASE_SEPOLIA_RPC_URL --chain-id 84532 -vv --broadcast --verify
