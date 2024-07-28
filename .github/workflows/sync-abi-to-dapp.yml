@@ -44,3 +44,28 @@ jobs:
             git commit -m "ci: sync ABI files from `v1-core`"
             git push origin ci/abi-sync
           fi
+
+      - name: List changed files
+        id: changes
+        run: |
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          echo "changed_files=$CHANGED_FILES" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'ci: sync ABI files from `v1-core`'
+          branch: ci/abi-sync
+          base: main
+          title: '[v1-core] sync ABI files'
+          body: |
+            gm ☀️
+            here are some incoming ABI changes from the `v1-core` repository
+
+            **Summary of changes:**
+            ${{ env.changed_files }}
+
+            Please review the changes to ensure there are no breaking changes before merging.
+          labels: 'automated, scope: contracts'
+          assignees: 'heyJonBray, RTJ99'
