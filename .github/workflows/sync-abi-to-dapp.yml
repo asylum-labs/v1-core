@@ -25,8 +25,12 @@ jobs:
       - name: Check for ABI changes
         id: check_changes
         run: |
-          git diff --exit-code abi/ || echo "ABI files have changed"
-          echo "::set-output name=changed::$(git diff --exit-code abi/ || echo 1)"
+          CHANGED=$(git diff --name-only HEAD~1 HEAD | grep -c '^abi/')
+          if [ "$CHANGED" -gt 0 ]; then
+            echo "::set-output name=changed::1"
+          else
+            echo "::set-output name=changed::0"
+          fi
 
       - name: Sync ABI to xeon-dapp
         if: steps.check_changes.outputs.changed == '1'
