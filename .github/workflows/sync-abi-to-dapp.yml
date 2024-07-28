@@ -82,8 +82,8 @@ jobs:
             --title '[v1-core]: sync ABI files' \
             --body "$(echo -e 'gm ☀️\n\nhere are some incoming ABI changes from the `v1-core` repository\n\n**Summary of changes:**\n${{ env.CHANGED_FILES }}\n\nPlease review the changes to ensure there are no breaking changes before merging.')" \
             --label "automated,scope: contracts" \
-            --reviewer "RTJ99" \
-            --assignee "heyJonBray")
+            --reviewer RTJ99 \
+            --assignee heyJonBray)
 
         env:
           GH_TOKEN: ${{ secrets.SYNC_TOKEN }}
