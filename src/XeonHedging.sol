@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity 0.8.20;
 
-import "openzeppelin/contracts/access/Ownable.sol";
-import "openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol";
-import "uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol";
+import "@uniswap/v3-core/contracts/interfaces/IUniswapV3Factory.sol";
 import "./XeonStaking.sol";
 
 // minimal interface for the WETH9 contract
