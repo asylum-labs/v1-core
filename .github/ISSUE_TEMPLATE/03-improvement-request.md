@@ -1,19 +1,17 @@
 ---
-name: Improvement request
+name: Improvement Request
 about: Suggest ways to improve existing features.
 title: 'improve: [feature]'
 labels: 'status: discussing, type: enhancement'
 assignees: 'heyJonBray'
 ---
 
-**Please describe the specific feature you'd like updated**
-A concise description of the current feature.
+**Feature to be updated:**
 
-**Describe the enhancement you'd like to see**
-A clear and concise description of what you want to happen. Ex. If would be nice if [...]
+**Desired Enhancement:**
 
-**Have you seen a similar feature elsewhere?**
-Any references to other features in the wild. Ex. So-and-so's contracts [...]
+**References:**
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Additional Context**
+
+Add any other context or screenshots about the improvement request here.
