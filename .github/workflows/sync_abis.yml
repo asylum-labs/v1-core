@@ -24,7 +24,7 @@ jobs:
       - name: Build and Extract ABIs
         run: |
           # Source Foundry environment
-          source ~/runner/.bashrc
+          source ~/.bashrc
 
           # Ensure the script is executable
           chmod +x extract_and_copy_abis.sh
