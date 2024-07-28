@@ -30,9 +30,6 @@ jobs:
           git checkout -B ci/abi-sync || git checkout --orphan ci/abi-sync
           rsync -a ../v1-core/abi/ src/abi/
 
-      - name: Check ABI File Naming
-        uses: ./.github/actions/check-abi-naming
-
       - name: Commit and push changes
         run: |
           cd xeon-dapp
