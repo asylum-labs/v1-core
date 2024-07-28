@@ -21,6 +21,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          path: v1-core
 
       - name: Check for ABI changes
         id: check_changes
@@ -36,7 +37,7 @@ jobs:
       - name: Sync ABI to xeon-dapp
         if: steps.check_changes.outputs.changed == '1'
         run: |
-          git clone git@github.com:xeon-protocol/xeon-dapp.git
+          git clone git@github.com:xeon-protocol/xeon-dapp.git xeon-dapp
           cd xeon-dapp
           git checkout -B ci/abi-sync || git checkout --orphan ci/abi-sync
           rsync -a ../v1-core/abi/ src/abi/
