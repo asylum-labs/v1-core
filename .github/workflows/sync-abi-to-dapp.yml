@@ -21,6 +21,14 @@ jobs:
           chmod 600 ~/.ssh/id_rsa_xeon_dapp
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
+      - name: Checkout v1-core repository
+        uses: actions/checkout@v3
+        with:
+          repository: xeon-protocol/v1-core
+          path: v1-core
+          ssh-key: ${{ secrets.V1_CORE_SSH_PRIVATE_KEY }}
+          ref: main
+
       - name: Checkout xeon-dapp repository
         uses: actions/checkout@v3
         with:
@@ -29,15 +37,15 @@ jobs:
           ssh-key: ${{ secrets.XEON_DAPP_SSH_PRIVATE_KEY }}
           ref: main
 
-      - name: Copy ABI files from v1-core
-        run: |
-          mkdir -p xeon-dapp/src/abi
-          cp -r ../v1-core/abi/* xeon-dapp/src/abi/
-
       - name: Create new branch for ABI sync
         run: |
           cd xeon-dapp
           git checkout -b ci/abi-sync
+
+      - name: Copy ABI files
+        run: |
+          mkdir -p xeon-dapp/src/abi
+          cp -r v1-core/abi/* xeon-dapp/src/abi/
 
       - name: Commit and push changes
         run: |
