@@ -33,13 +33,38 @@ curl -L https://foundry.paradigm.xyz | bash
 foundryup
 ```
 
-Second, install the dependency submodules using Forge:
+If you don't have a local version of the repository, clone it:
+
+```shell
+git clone https://github.com/xeon-protocol/v1-core.git
+```
+
+Ensure you have the latest changes locally
+
+```shell
+git pull origin main
+```
+
+Install the dependency submodules using Forge:
 
 ```shell
 forge install --no-commit foundry-rs/forge-std openzeppelin/openzeppelin-contracts uniswap/v2-core uniswap v3-core uniswap v3-periphery
 ```
 
 The `foundry.toml` file is used to configure Foundry settings, manage RPC endpoints, and dependencies.
+
+---
+
+## Foundry
+
+Foundry is a toolkit for writing smart contracts, tests, and scripts in Solidity. It is made up of the following tools:
+
+- `forge` is used to develop, test, and deploy smart contracts.
+- `cast` allows you to interact with contracts, send transactions, and get chain data from the CLI.
+- `anvil` is a local node.
+- `chisel` is an integrated Solidity REPL.
+
+For more information, check out the [Foundry Book](https://book.getfoundry.sh/).
 
 ## Forge
 
