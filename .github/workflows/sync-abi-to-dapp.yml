@@ -9,37 +9,36 @@ on:
       - main
 
 jobs:
-  sync_abi_files:
+  sync-abi-to-dapp:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.5.3
+      - name: Checkout v1-core repository
+        uses: actions/checkout@v3
         with:
-          ssh-private-key: ${{ secrets.V1_CORE_SSH_KEY }}
+          ssh-key: ${{ secrets.V1_DAPP_SYNC_PRIVATE_KEY }}
 
-      - name: Checkout v1-core
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          path: v1-core
-
-      - name: Checkout xeon-dapp
-        uses: actions/checkout@v2
+      - name: Checkout xeon-dapp repository
+        uses: actions/checkout@v3
         with:
           repository: xeon-protocol/xeon-dapp
-          token: ${{ secrets.V1_SYNC_PAT }}
           path: xeon-dapp
+          ssh-key: ${{ secrets.V1_DAPP_SYNC_PRIVATE_KEY }}
+          ref: main
 
-      - name: Sync ABI to xeon-dapp
+      - name: Create new branch for ABI sync
         run: |
           cd xeon-dapp
-          git checkout -B ci/abi-sync || git checkout --orphan ci/abi-sync
-          rsync -a ../v1-core/abi/ src/abi/
+          git checkout -b ci/abi-sync
+
+      - name: Copy ABI files
+        run: |
+          cp -r abi/* xeon-dapp/src/abi/
 
       - name: Commit and push changes
         run: |
           cd xeon-dapp
-          git add src/abi/
+          git add src/abi/*
           if git diff-index --quiet HEAD; then
             echo "No changes to commit."
           else
@@ -58,8 +57,9 @@ jobs:
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
+        if: env.CHANGED_FILES != ''
         with:
-          token: ${{ secrets.V1_SYNC_PAT }}
+          token: ${{ secrets.SYNC_TOKEN }}
           commit-message: 'ci: sync ABI files from `v1-core`'
           branch: ci/abi-sync
           base: main
