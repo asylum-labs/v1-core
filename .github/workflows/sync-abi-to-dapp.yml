@@ -59,7 +59,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.V1_SYNC_PAT }}
           commit-message: 'ci: sync ABI files from `v1-core`'
           branch: ci/abi-sync
           base: main
