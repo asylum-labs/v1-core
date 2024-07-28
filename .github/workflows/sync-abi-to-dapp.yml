@@ -29,13 +29,13 @@ jobs:
           CHANGED=$(git diff --name-only HEAD~1 HEAD | grep -c '^abi/' || true)
           echo "Number of changes in abi/: $CHANGED"
           if [ "$CHANGED" -gt 0 ]; then
-            echo "::set-output name=changed::1"
+            echo "changed=1" >> $GITHUB_ENV
           else
-            echo "::set-output name=changed::0"
+            echo "changed=0" >> $GITHUB_ENV
           fi
 
       - name: Sync ABI to xeon-dapp
-        if: steps.check_changes.outputs.changed == '1'
+        if: env.changed == '1'
         run: |
           git clone git@github.com:xeon-protocol/xeon-dapp.git xeon-dapp
           cd xeon-dapp
@@ -43,11 +43,11 @@ jobs:
           rsync -a ../v1-core/abi/ src/abi/
 
       - name: Check ABI File Naming
-        if: steps.check_changes.outputs.changed == '1'
+        if: env.changed == '1'
         uses: ./.github/actions/check-abi-naming
 
       - name: Commit and push changes
-        if: steps.check_changes.outputs.changed == '1'
+        if: env.changed == '1'
         run: |
           cd xeon-dapp
           git add src/abi/
@@ -61,7 +61,7 @@ jobs:
           fi
 
       - name: List changed files
-        if: steps.check_changes.outputs.changed == '1'
+        if: env.changed == '1'
         id: changes
         run: |
           cd xeon-dapp
@@ -69,7 +69,7 @@ jobs:
           echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
 
       - name: Create Pull Request
-        if: steps.check_changes.outputs.changed == '1'
+        if: env.changed == '1'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
