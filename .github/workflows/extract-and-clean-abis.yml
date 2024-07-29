@@ -3,7 +3,7 @@ name: Extract and Clean ABIs
 on:
   push:
     branches:
-      - main
+      - testnet/cleanup
 
 jobs:
   build-and-extract-abi:
