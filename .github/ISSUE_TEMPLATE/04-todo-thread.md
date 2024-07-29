@@ -6,8 +6,8 @@ labels: 'type: chore'
 assignees: 'heyJonBray'
 ---
 
-**Task to be completed:**
+## Task to be completed
 
-**Scope of work:**
+## Scope of work
 
-**Additional context:**
+## Additional Context
