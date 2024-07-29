@@ -2,7 +2,7 @@
 pragma solidity >=0.7.6;
 pragma abicoder v2;
 
-import {Script, console} from "forge-std/Script.sol";
+import {Script, console} from "@forge-std/Script.sol";
 import {PriceOracle} from "../src/PriceOracle.sol";
 
 contract PriceOracleScript is Script {
