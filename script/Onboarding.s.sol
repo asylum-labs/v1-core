@@ -5,6 +5,7 @@ import {Script, console2} from "@forge-std/Script.sol";
 import {MockERC20, MockERC20Factory, MockWETH} from "../src/testnet/MockERC20Factory.sol";
 import {OnboardingUtils} from "../src/testnet/OnboardingUtils.sol";
 
+
 contract OnboardingScript is Script {
     address public deployer = 0x56557c3266d11541c2D939BF6C05BFD29e881e55;
 
