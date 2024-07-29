@@ -51,11 +51,16 @@ The following deployments are subject to bounty rewards up to and including the 
 
 | Codebase                                                          | Bounty                                                          |
 | ----------------------------------------------------------------- | --------------------------------------------------------------- |
-| [v1-core](https://github.com/xeon-protocol/v1-core)               | ![severe](https://img.shields.io/badge/level-critical-red.svg)  |
+| [v1-core](https://github.com/xeon-protocol/v1-core) \*            | ![severe](https://img.shields.io/badge/level-critical-red.svg)  |
 | [xeon-testnet](https://github.com/xeon-protocol/xeon-testnet)     | ![none](https://img.shields.io/badge/level-N/A-grey.svg)        |
 | [xeon-periphery](https://github.com/xeon-protocol/xeon-periphery) | ![medium](https://img.shields.io/badge/level-medium-yellow.svg) |
 
 Completed bug bounties are claimable per-codebase, not per-network deployment of that codebase.
+
+> `v1-core` is currently in internal review, and available only to select solidity auditors
+> once the initial audit phase is complete, the repo will be publicly opened to the Program
+>
+> **NOTE:** Early access developers within audit scope use a different payment structure from the Program, to ensure fair access for all bug hunters.
 
 ## Responsible Disclosure
 
