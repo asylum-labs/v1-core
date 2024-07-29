@@ -2,8 +2,8 @@
 pragma solidity 0.8.20;
 
 import {Script, console2} from "@forge-std/Script.sol";
-import {MockERC20, MockERC20Factory, MockWETH} from "../src/utils/MockERC20Factory.sol";
-import {OnboardingUtils} from "../src/utils/OnboardingUtils.sol";
+import {MockERC20, MockERC20Factory, MockWETH} from "../src/testnet/MockERC20Factory.sol";
+import {OnboardingUtils} from "../src/testnet/OnboardingUtils.sol";
 
 /**
  * @dev give OnboardingUtils MINTER_ROLE to all MockERC20 tokens

@@ -3,8 +3,8 @@ pragma solidity 0.8.20;
 
 import {Test} from "@forge-std/Test.sol";
 import {console2} from "@forge-std/console2.sol";
-import {MockERC20, MockERC20Factory, MockWETH} from "../src/utils/MockERC20Factory.sol";
-import {OnboardingUtils} from "../src/utils/OnboardingUtils.sol";
+import {MockERC20, MockERC20Factory, MockWETH} from "../src/testnet/MockERC20Factory.sol";
+import {OnboardingUtils} from "../src/testnet/OnboardingUtils.sol";
 
 contract OnboardingTest is Test {
     MockERC20Factory public mockERC20Factory;
