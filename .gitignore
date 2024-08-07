@@ -1,15 +1,18 @@
-# Compiler files
+# node modules
+node_modules/
+
+# compiler files
 cache/
 out/
 
-# Ignores development broadcast logs
+# ignore development broadcast logs
 !/broadcast
 /broadcast/*/31337/
 /broadcast/**/dry-run/
 
-# Docs
+# docs
 docs/
 
-# Dotenv file
+# dotenv file
 .env
 .env.local
