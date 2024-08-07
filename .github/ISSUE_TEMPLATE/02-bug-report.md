@@ -6,27 +6,33 @@ labels: 'type: bug'
 assignees: 'heyJonBray'
 ---
 
-**Bug Description:** A clear and concise description of what the bug is.
+## Issue Description
 
-**Network:**
+> A clear and concise description of what the bug is.
 
-**Contract:**
+### Contract
 
-**Transaction Hash (if applicable):**
+> Which contract is this bug present in?
 
-**To Reproduce**
+### Transaction Hash (if applicable)
 
-Steps to reproduce the behavior:
+> if deployed onchain, include tx hash
 
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+## Steps to Reproduce
 
-**Expected behavior**
+> Steps to reproduce the behavior:
+>
+> 1. Go to '...'
+> 2. Click on '....'
+> 3. Scroll down to '....'
+> 4. See error
 
-A clear and concise description of what you expected to happen.
+## Expected behavior
 
-**Additional context**
+> A clear and concise description of what you expected to happen.
 
-Add any other context about the problem here.
+## Additional context
+
+> Add any other context about the problem here.
+>
+> Include references to existing issues or pull requests here

@@ -6,12 +6,18 @@ labels: 'status: discussing, type: enhancement'
 assignees: 'heyJonBray'
 ---
 
-**Feature to be updated:**
+## Current Feature
 
-**Desired Enhancement:**
+> What existing feature is this request about?
 
-**References:**
+## Requested Improvement
 
-**Additional Context**
+> A clear and concise description of what you want to happen.
 
-Add any other context or screenshots about the improvement request here.
+## Purpose
+
+> What is the goal of this improvement or update?
+
+## Additional context
+
+> Add any other context or screenshots about the request here

@@ -8,6 +8,12 @@ assignees: 'heyJonBray'
 
 ## Task to be completed
 
+> what tasks need to be completed?
+
 ## Scope of work
 
+> describe the scope
+
 ## Additional Context
+
+> Add any other context about the request here
