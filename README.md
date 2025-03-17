@@ -1,18 +1,16 @@
-# Xeon Protocol v1
+# v1-options-contracts
 
-[![GitHub license](https://img.shields.io/badge/core_license-BUSL_1.1-blue.svg)](https://github.com/xeon-protocol/v1-core/blob/main/LICENSE) [![GitHub license](https://img.shields.io/badge/incl_license-GPL_3.0-blue.svg)](https://github.com/xeon-protocol/v1-core/blob/main/LICENSE-GPL.md)
+[![GitHub license](https://img.shields.io/badge/core_license-BUSL_1.1-blue.svg)](https://github.com/heyjonbray/v1-options-contracts/blob/main/LICENSE) [![GitHub license](https://img.shields.io/badge/incl_license-GPL_3.0-blue.svg)](https://github.com/heyjonbray/v1-options-contracts/blob/main/LICENSE-GPL.md)
 
-[![xeon token](https://img.shields.io/badge/$XEON-0x8d65a2eaBDE4B31cbD7E43F27E47559d1CCec86c-8429c6.svg?logo=ethereum)](https://app.uniswap.org/explore/tokens/ethereum/0x8d65a2eabde4b31cbd7e43f27e47559d1ccec86c?chain=mainnet)
+This repository contains the core contracts for onchain execution of OTC options trading (put, call, equity swaps) including tests, and scripts. For the frontend, see the [xeon-dapp](https://github.com/heyjonbray/xeon-dapp) repository.
 
-This repository contains the core contracts for v1 of Xeon Protocol including tests, and scripts. For the frontend, see the [xeon-dapp](https://github.com/xeon-protocol/xeon-dapp) repository.
+### Socials
 
-### Follow Us
-
-[![warpcast](https://img.shields.io/badge/Follow_@xeonprotocol-FFFFFF.svg?logo=farcaster)](https://warpcast.com/xeonprotocol) ![twitter follow](https://img.shields.io/twitter/follow/xeonprotocol) [![telegram](https://img.shields.io/badge/join_telegram-FFFFFF.svg?logo=telegram)](https://t.me/XeonProtocolPortal)
+[![warpcast](https://img.shields.io/badge/Follow_@jonbray.eth-FFFFFF.svg?logo=farcaster)](https://warpcast.com/jonbray.eth) ![twitter follow](https://img.shields.io/twitter/follow/heyjonbray)
 
 ### Repo Status
 
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/xeon-protocol/v1-core) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/xeon-protocol/v1-core) ![GitHub contributors](https://img.shields.io/github/contributors/xeon-protocol/v1-core)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/heyjonbray/v1-options-contracts) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/heyjonbray/v1-options-contracts) ![GitHub contributors](https://img.shields.io/github/contributors/heyjonbray/v1-options-contracts)
 
 ## Prerequisites
 
@@ -36,7 +34,7 @@ foundryup
 If you don't have a local version of the repository, clone it:
 
 ```shell
-git clone https://github.com/xeon-protocol/v1-core.git
+git clone https://github.com/heyjonbray/v1-options-contracts.git
 ```
 
 Ensure you have the latest changes locally
@@ -133,28 +131,20 @@ Then run the `forge script` command without the private key arg.
 
 💡 **When deploying a new contract, use the `--verify` arg to verify the contract on deployment.**
 
-## Product Management
-
-[![trello](https://img.shields.io/badge/Trello-855DCD.svg?logo=trello)](<[https://trello.com/b/mW198hKo/xeon-protocol-board](https://trello.com/invite/b/mW198hKo/ATTIc305ea03ad04139d54ef382b7a276d651224A655/xeon-protocol-board)>)
-
 ## Contributing
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](https://github.com/xeon-protocol/v1-core/blob/main/CONTRIBUTING.md) [![Bug Bounties](https://img.shields.io/badge/Bug_Bounties-open-red.svg)](https://github.com/xeon-protocol/v1-core/blob/main/SECURITY.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-darkgreen.svg)](https://github.com/heyjonbray/v1-options-contracts/blob/main/CONTRIBUTING.md) [![Bug Bounties](https://img.shields.io/badge/Bug_Bounties-open-red.svg)](https://github.com/heyjonbray/v1-options-contracts/blob/main/SECURITY.md)
 
-If you are a developer looking to contribute, please take a look at the guidelines in [CONTRIBUTING](https://github.com/xeon-protocol/v1-core/blob/main/CONTRIBUTING.md) first, then feel free to look at [open issues](https://github.com/xeon-protocol/v1-core/issues/) or open a [new one](https://github.com/xeon-protocol/v1-core/issues/new/choose).
-
-If you are an Solidity developer and are interested in auditing our contracts, you can submit an audit by using the form [here](https://github.com/xeon-protocol/v1-core/issues/new?assignees=heyJonBray%2C+wellytg%2C+neonhedge&labels=type%3A+audit%2C+status%3A+discussing&projects=&template=04-audit-submission.md&title=xeon-v1-core+audit+%5BMM-DD-YYYY%5D-%5ByourName%5D).
+If you are a contributor, please take a look at the guidelines in [CONTRIBUTING](https://github.com/heyjonbray/v1-options-contracts/blob/main/CONTRIBUTING.md) first, then find an [open issue](https://github.com/heyjonbray/v1-options-contracts/issues/) or open a [new one](https://github.com/heyjonbray/v1-options-contracts/issues/new/choose).
 
 ## Security
 
-For any security-related concerns, please refer to the [SECURITY](https://github.com/xeon-protocol/v1-core/blob/main/SECURITY.md) policy. This repository is subject to a bug bounty program per the terms outlined in the aforementioned policy.
-
-For vulnerability hunters, please see our [Bug Bounty Program](https://github.com/xeon-protocol/v1-core/blob/main/bug-bounty.md).
+For any security-related concerns, please refer to the [SECURITY](https://github.com/heyjonbray/v1-options-contracts/blob/main/SECURITY.md) policy.
 
 ## License
 
-The primary license for core Xeon Protocol contracts (`XeonHedging.sol` + `XeonStaking.sol`) is the Business Source License 1.1 (BUSL-1.1), see [`LICENSE.md`](https://github.com/xeon-protocol/v1-core/blob/main/LICENSE.md).
+The primary license for the core contracts (`XeonHedging.sol` + `XeonStaking.sol`) is the Business Source License 1.1 (BUSL-1.1), see [`LICENSE.md`](https://github.com/heyjonbray/v1-options-contracts/blob/main/LICENSE.md).
 
 However, there are some exceptions:
 
-- Several files in `contracts/script` and `contracts/test` are licensed under `GPL-3.0-or-later` (see: [`LICENSE-GPL.md`](https://github.com/xeon-protocol/v1-core/blob/main/LICENSE-GPL.md)) or remain unlicensed (per their SPDX headers).
+- Several files in `contracts/script` and `contracts/test` are licensed under `GPL-3.0-or-later` (see: [`LICENSE-GPL.md`](https://github.com/heyjonbray/v1-options-contracts/blob/main/LICENSE-GPL.md)) or remain unlicensed (per their SPDX headers).
