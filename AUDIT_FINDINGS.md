@@ -1,12 +1,12 @@
-# Xeon Protocol
+# Asylum Group
 
-**Liquidity unlocking and risk management platform**
+**DeFi risk management and liquidity tools**
 
 ## Audit findings updates: 09/06/2024
 
-### `XeonHedging.sol`
+### `AsylumHedging.sol`
 
-This is the main smart contract for the Xeon Protocol.
+This is the main smart contract for Asylum Labs DeFi.
 The smart contract is deployed on testnet.
 
 - Deposit any ERC-20 token as collateral

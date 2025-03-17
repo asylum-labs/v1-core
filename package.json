@@ -1,7 +1,7 @@
 {
   "name": "v1-core",
   "version": "0.0.1",
-  "description": "core contracts for Xeon Protocol v1",
+  "description": "core DeFi contracts for Asylum Labsv1",
   "directories": {
     "lib": "lib",
     "test": "test"

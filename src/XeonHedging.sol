@@ -23,7 +23,7 @@ interface IPriceOracle {
 /**
  * @title XeonHedging
  */
-contract XeonHedging is Ownable, ReentrancyGuard{
+contract XeonHedging is Ownable, ReentrancyGuard {
     using SafeERC20 for IERC20;
 
     bool private isExecuting;
@@ -225,34 +225,34 @@ contract XeonHedging is Ownable, ReentrancyGuard{
     event FeeUpdated(uint256 feeNumerator, uint256 feeDenominator);
     event EtherWithdrawn(address indexed to, uint256 amount);
 
-// constructor
-constructor(
-    address _uniswapV2Factory,
-    address _uniswapV3Factory,
-    address _priceOracle,
-    XeonStaking _stakingContract
-) Ownable(msg.sender) ReentrancyGuard() { // Properly call the Ownable constructor
-    require(_uniswapV2Factory != address(0), "Invalid UniswapV2Factory address");
-    require(_uniswapV3Factory != address(0), "Invalid UniswapV3Factory address");
-    require(_priceOracle != address(0), "Invalid Oracle Address");
-    require(address(_stakingContract) != address(0), "Invalid StakingContract Address");
+    // constructor
+    constructor(
+        address _uniswapV2Factory,
+        address _uniswapV3Factory,
+        address _priceOracle,
+        XeonStaking _stakingContract
+    ) Ownable(msg.sender) ReentrancyGuard() {
+        // Properly call the Ownable constructor
+        require(_uniswapV2Factory != address(0), "Invalid UniswapV2Factory address");
+        require(_uniswapV3Factory != address(0), "Invalid UniswapV3Factory address");
+        require(_priceOracle != address(0), "Invalid Oracle Address");
+        require(address(_stakingContract) != address(0), "Invalid StakingContract Address");
 
-    uniswapV2Factory = IUniswapV2Factory(_uniswapV2Factory);
-    uniswapV3Factory = IUniswapV3Factory(_uniswapV3Factory);
-    priceOracle = _priceOracle;
-    stakingContract = XeonStaking(_stakingContract);
+        uniswapV2Factory = IUniswapV2Factory(_uniswapV2Factory);
+        uniswapV3Factory = IUniswapV3Factory(_uniswapV3Factory);
+        priceOracle = _priceOracle;
+        stakingContract = XeonStaking(_stakingContract);
 
-    wethAddress = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2; // WETH address on Sepolia
-    usdtAddress = 0x297B8d4B35294e730087ADF0597A31a9bC1746af; // USDT address on Sepolia
-    usdcAddress = 0x8267cF9254734C6Eb452a7bb9AAF97B392258b21; // USDC address on Sepolia
-    xeonAddress = 0xDb90a9f7cEaA33a32Ec836Bbadeeaa8772Ad9797; // V2.1 deployed 14/01/2024 21:52:48
+        wethAddress = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2; // WETH address on Sepolia
+        usdtAddress = 0x297B8d4B35294e730087ADF0597A31a9bC1746af; // USDT address on Sepolia
+        usdcAddress = 0x8267cF9254734C6Eb452a7bb9AAF97B392258b21; // USDC address on Sepolia
+        xeonAddress = 0xDb90a9f7cEaA33a32Ec836Bbadeeaa8772Ad9797; // V2.1 deployed 14/01/2024 21:52:48
 
-    feeNumerator = 5;
-    feeDenominator = 1000;
+        feeNumerator = 5;
+        feeDenominator = 1000;
 
-    emit ContractInitialized(_priceOracle, address(_stakingContract));
-}
-
+        emit ContractInitialized(_priceOracle, address(_stakingContract));
+    }
 
     /**
      * @dev Allows users to deposit ERC-20 tokens into the protocol.
@@ -1232,6 +1232,7 @@ constructor(
         uint256 fee = amount - amountIn;
         return fee;
     }
+
     /**
      * @notice Toggles the bookmark status of a hedging option using its ID.
      *
@@ -1240,7 +1241,6 @@ constructor(
      *
      * @param _dealID The unique identifier of the hedging option.
      */
-
     function bookmarkHedge(uint256 _dealID) external {
         bool bookmarked = bookmarks[msg.sender][_dealID];
         bookmarks[msg.sender][_dealID] = !bookmarked;
@@ -1302,7 +1302,7 @@ constructor(
         uint256 token0Decimals;
         uint256 token1Decimals;
     }
-//todo: getunderlyingvlue and price funcs should be in their own contract
+
     // Get token value in paired currency.
     // paired value is always the pair address of the token provided.
     // TWAP oracle is used to get the price.

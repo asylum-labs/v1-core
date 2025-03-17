@@ -16,3 +16,6 @@ docs/
 # dotenv file
 .env
 .env.local
+
+# cursor
+.cursorrules
